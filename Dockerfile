@@ -18,7 +18,8 @@ RUN echo "===> Adding epel, java, ruby, pip, etc" && \
     yum install -y wget openssl sudo unzip graphviz git perl jq \
                    java-1.7.0-openjdk maven libffi-devel \
                    ruby ruby-devel rubygem-bundler \
-                   python-pip python-devel zlib-devel
+                   python-pip python-devel zlib-devel \
+                   openssl-devel
 
 # Install Ansible
 RUN echo "===> Adding ansible ${ANSIBLE_VERSION}" && \
@@ -53,7 +54,7 @@ RUN echo "===> Adding terraform ${TERRAFORM_VERSION}" && \
 
 # Add Gems
 RUN echo "===> Adding gems" && \
-    gem install liquid diplomat fog json fpm jekyll awscli rspec mechanize cucumber
+    gem install liquid diplomat fog json fpm jekyll awscli rspec mechanize cucumber git coderay rake ruby-jmeter
 
 # Clean up
 RUN echo "===> Cleaning up" && \

@@ -5,7 +5,8 @@ MAINTAINER Nigel Gibbs <nigel@gibbsoft.com>
 ENV ANSIBLE_VERSION 2.0.2.0
 ENV LIQUIBASE_VERSION 3.4.2
 ENV PGJDBC_VERSION 9.4.1208.jre7
-ENV TERRAFORM_VERSION 0.6.15
+ENV TERRAFORM_VERSION 0.6.16
+ENV JMETER_VERSION 3.0
 ENV PATH /terraform:$PATH
 
 
@@ -37,6 +38,13 @@ RUN echo "===> Adding postgres jdbc driver ${PGJDBC_VERSION}" && \
     wget -P /tmp https://jdbc.postgresql.org/download/postgresql-${PGJDBC_VERSION}.jar && \
     mv /tmp/postgresql-${PGJDBC_VERSION}.jar /opt/jdbc_drivers/ && \
     ln -s /opt/jdbc_drivers/postgresql-${PGJDBC_VERSION}.jar /opt/liquibase/lib
+
+# Add jMeter
+RUN echo "===> Adding jMeter ${JMETER_VERSION}" && \
+    wget http://mirror.vorboss.net/apache/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz && \
+    tar zxvf apache-jmeter-${JMETER_VERSION}.tgz -C /opt/ && \
+    ln -s /opt/apache-jmeter-${JMETER_VERSION} /opt/jmeter && \
+    ln -s /opt/apache-jmeter-${JMETER_VERSION}/bin/jmeter /usr/local/bin/
 
 # Add terraform
 RUN echo "===> Adding terraform ${TERRAFORM_VERSION}" && \

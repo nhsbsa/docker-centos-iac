@@ -54,7 +54,7 @@ RUN echo "===> Adding terraform ${TERRAFORM_VERSION}" && \
 
 # Add Gems
 RUN echo "===> Adding gems" && \
-    gem install liquid diplomat fog json fpm jekyll awscli rspec mechanize cucumber git coderay rake ruby-jmeter
+    gem install liquid diplomat fog json fpm jekyll awscli rspec mechanize cucumber git coderay rake ruby-jmeter rubocop
 
 # Clean up
 RUN echo "===> Cleaning up" && \

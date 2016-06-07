@@ -8,7 +8,7 @@ ENV PGJDBC_VERSION 9.4.1208.jre7
 ENV TERRAFORM_VERSION 0.6.16
 ENV JMETER_VERSION 3.0
 ENV PATH /terraform:$PATH
-
+ENV MIN_SETUPTOOLS_VERSION 11.3
 
 # Install a few RPMs
 RUN echo "===> Adding epel, java, ruby, pip, etc" && \
@@ -20,6 +20,10 @@ RUN echo "===> Adding epel, java, ruby, pip, etc" && \
                    ruby ruby-devel rubygem-bundler \
                    python-pip python-devel zlib-devel \
                    openssl-devel
+
+# Install Ansible pre-reqs
+RUN echo "===> Adding ansible pre-reqs" && \
+    pip install --upgrade "'setuptools>=${MIN_SETUPTOOLS_VERSION}'"
 
 # Install Ansible
 RUN echo "===> Adding ansible ${ANSIBLE_VERSION}" && \

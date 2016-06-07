@@ -23,7 +23,7 @@ RUN echo "===> Adding epel, java, ruby, pip, etc" && \
 
 # Install Ansible pre-reqs
 RUN echo "===> Adding ansible pre-reqs" && \
-    pip install --upgrade "'setuptools>=${MIN_SETUPTOOLS_VERSION}'"
+    pip install --upgrade "setuptools>=${MIN_SETUPTOOLS_VERSION}"
 
 # Install Ansible
 RUN echo "===> Adding ansible ${ANSIBLE_VERSION}" && \

@@ -15,8 +15,8 @@ RUN echo "===> Adding epel, java, ruby, pip, etc" && \
     yum update -y && \
     yum group install -y "Development Tools" && \
     yum install -y epel-release && \
-    yum install -y wget openssl sudo unzip graphviz git perl jq \
-                   java-1.7.0-openjdk maven libffi-devel \
+    yum install -y wget bc openssl sudo unzip graphviz git perl jq \
+                   which java-1.7.0-openjdk maven libffi-devel \
                    ruby ruby-devel rubygem-bundler \
                    python-pip python-devel zlib-devel \
                    openssl-devel

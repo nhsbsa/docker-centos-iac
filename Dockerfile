@@ -2,6 +2,7 @@ FROM centos:centos7
 
 MAINTAINER Nigel Gibbs <nigel@gibbsoft.com>
 
+ENV JAVA_VERSION 1.8.0
 ENV ANSIBLE_VERSION 2.0.2.0
 ENV LIQUIBASE_VERSION 3.4.2
 ENV PGJDBC_VERSION 9.4.1208.jre7
@@ -16,7 +17,7 @@ RUN echo "===> Adding epel, java, ruby, pip, etc" && \
     yum group install -y "Development Tools" && \
     yum install -y epel-release && \
     yum install -y wget bc openssl sudo unzip graphviz git perl jq \
-                   which java-1.7.0-openjdk maven libffi-devel \
+                   which java-${JAVA_VERSION}-openjdk maven libffi-devel \
                    ruby ruby-devel rubygem-bundler \
                    python-pip python-devel zlib-devel \
                    openssl-devel

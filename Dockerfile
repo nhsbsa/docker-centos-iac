@@ -69,6 +69,7 @@ RUN echo "===> Cleaning up" && \
     yum upgrade -y && \
     yum clean all # && yum group remove -y "Development Tools"
 
+ENV JAVA_HOME $(dirname $(dirname $(readlink -f $(which java))))
 WORKDIR /
 
 # default command: display Ansible version

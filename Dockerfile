@@ -17,10 +17,9 @@ RUN echo "===> Adding epel, java, ruby, pip, etc" && \
     yum group install -y "Development Tools" && \
     yum install -y epel-release && \
     yum install -y wget bc openssl sudo unzip graphviz git perl jq \
-                   which java-${JAVA_VERSION}-openjdk maven libffi-devel \
-                   ruby ruby-devel rubygem-bundler \
-                   python-pip python-devel zlib-devel \
-                   openssl-devel
+      java-${JAVA_VERSION}-openjdk java-${JAVA_VERSION}-openjdk-devel \
+      maven libffi-devel which ruby ruby-devel rubygem-bundler \
+      python-pip python-devel zlib-devel openssl-devel
 
 # Install Ansible pre-reqs
 RUN echo "===> Adding ansible pre-reqs" && \

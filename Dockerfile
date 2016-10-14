@@ -62,6 +62,7 @@ RUN echo "===> Adding terraform ${TERRAFORM_VERSION}" && \
 RUN echo "===> Installing rbenv and ruby" && \
     git clone https://github.com/rbenv/rbenv.git ${HOME}/.rbenv && \
     git clone https://github.com/rbenv/ruby-build.git ${HOME}/.rbenv/plugins/ruby-build && \
+    rbenv install 2.0.0-p598 && \
     rbenv install $INSTALL_RUBY_VERSION && \
     rbenv global $INSTALL_RUBY_VERSION && \
     rbenv rehash && \

@@ -20,7 +20,7 @@ RUN echo "===> Adding epel, java, ruby, pip, etc" && \
     yum install -y epel-release && \
     yum install -y wget bc openssl sudo unzip graphviz git perl jq \
       java-${JAVA_VERSION}-openjdk java-${JAVA_VERSION}-openjdk-devel \
-      maven libffi-devel which ruby ruby-devel rubygem-bundler \
+      maven libffi-devel which \
       python-pip python-devel zlib-devel openssl-devel readline-devel
 
 # Install Ansible pre-reqs
@@ -70,7 +70,7 @@ RUN echo "===> Installing rbenv and ruby" && \
 
 # Add Gems
 RUN echo "===> Adding gems" && \
-    gem install liquid diplomat fog json fpm jekyll awscli \
+    gem install bundler liquid diplomat fog json fpm jekyll awscli \
       rspec mechanize cucumber git coderay ruby-jmeter \
       rubocop english
 

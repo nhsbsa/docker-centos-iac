@@ -3,15 +3,9 @@ FROM centos:centos7
 MAINTAINER Phil Stephenson <philip.stephenson1@nhs.net>
 
 ENV JAVA_VERSION 1.8.0
-ENV ANSIBLE_VERSION 2.0.2.0
-ENV LIQUIBASE_VERSION 3.4.2
 ENV PGJDBC_VERSION 9.4.1208.jre7
-ENV TERRAFORM_VERSION 0.6.16
 ENV JMETER_VERSION 3.0
 ENV MIN_SETUPTOOLS_VERSION 11.3
-ENV INSTALL_RUBY_VERSION 2.2.2
-ENV PATH /terraform:$PATH
-ENV PATH /root/.rbenv/bin:/root/.rbenv/shims:${PATH}
 
 # Install a few RPMs
 RUN echo "===> Adding epel, java, ruby, pip, etc" && \
@@ -28,10 +22,12 @@ RUN echo "===> Adding ansible pre-reqs" && \
     pip install --upgrade "setuptools>=${MIN_SETUPTOOLS_VERSION}"
 
 # Install Ansible
+ENV ANSIBLE_VERSION 2.0.2.0
 RUN echo "===> Adding ansible ${ANSIBLE_VERSION}" && \
     pip install ansible==${ANSIBLE_VERSION}
 
 # Download liquibase
+ENV LIQUIBASE_VERSION 3.4.2
 RUN echo "===> Adding liquibase ${LIQUIBASE_VERSION}" && \
     wget -P /tmp https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.4.2/liquibase-${LIQUIBASE_VERSION}-bin.tar.gz && \
     mkdir -p /opt/liquibase && \
@@ -54,15 +50,18 @@ RUN echo "===> Adding jMeter ${JMETER_VERSION}" && \
     ln -s /opt/apache-jmeter-${JMETER_VERSION}/bin/jmeter /usr/local/bin/
 
 # Add terraform
+ENV TERRAFORM_VERSION 0.7.7
 RUN echo "===> Adding terraform ${TERRAFORM_VERSION}" && \
     wget -P /tmp "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
     unzip /tmp/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/
 
 # Add rbenv and ruby
+ENV INSTALL_RUBY_VERSION 2.2.2
+ENV PATH /terraform:$PATH
+ENV PATH /root/.rbenv/bin:/root/.rbenv/shims:${PATH}
 RUN echo "===> Installing rbenv and ruby" && \
     git clone https://github.com/rbenv/rbenv.git ${HOME}/.rbenv && \
     git clone https://github.com/rbenv/ruby-build.git ${HOME}/.rbenv/plugins/ruby-build && \
-    rbenv install 2.0.0-p598 && \
     rbenv install $INSTALL_RUBY_VERSION && \
     rbenv global $INSTALL_RUBY_VERSION && \
     rbenv rehash && \

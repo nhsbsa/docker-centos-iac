@@ -62,7 +62,7 @@ ENV PATH /root/.rbenv/bin:/root/.rbenv/shims:${PATH}
 RUN echo "===> Installing rbenv and ruby" && \
     git clone https://github.com/rbenv/rbenv.git ${HOME}/.rbenv && \
     git clone https://github.com/rbenv/ruby-build.git ${HOME}/.rbenv/plugins/ruby-build && \
-    rbenv install 2.0.0-p598 && \    
+    rbenv install 2.0.0-p598 && \
     rbenv install $INSTALL_RUBY_VERSION && \
     rbenv global $INSTALL_RUBY_VERSION && \
     rbenv rehash && \
@@ -73,6 +73,12 @@ RUN echo "===> Adding gems" && \
     gem install bundler liquid diplomat fog json fpm jekyll awscli \
       rspec mechanize cucumber git coderay ruby-jmeter \
       rubocop english
+
+# Add more gems!
+RUN mkdir /gems
+COPY Gemfile /gems/
+COPY Gemfile.lock /gems/
+RUN cd /gems && bundle install
 
 # Clean up
 RUN echo "===> Cleaning up" && \

@@ -22,7 +22,7 @@ RUN echo "===> Adding ansible pre-reqs" && \
     pip install --upgrade "setuptools>=${MIN_SETUPTOOLS_VERSION}"
 
 # Install Ansible
-ENV ANSIBLE_VERSION 2.0.2.0
+ENV ANSIBLE_VERSION 2.2.0.0
 RUN echo "===> Adding ansible ${ANSIBLE_VERSION}" && \
     pip install ansible==${ANSIBLE_VERSION}
 

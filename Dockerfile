@@ -44,7 +44,7 @@ RUN echo "===> Adding postgres jdbc driver ${PGJDBC_VERSION}" && \
 
 # Add jMeter
 RUN echo "===> Adding jMeter ${JMETER_VERSION}" && \
-    wget http://mirror.vorboss.net/apache/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz && \
+    wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz && \
     tar zxvf apache-jmeter-${JMETER_VERSION}.tgz -C /opt/ && \
     ln -s /opt/apache-jmeter-${JMETER_VERSION} /opt/jmeter && \
     ln -s /opt/apache-jmeter-${JMETER_VERSION}/bin/jmeter /usr/local/bin/

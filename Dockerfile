@@ -22,7 +22,7 @@ RUN echo "===> Adding ansible pre-reqs" && \
     pip install --upgrade "setuptools>=${MIN_SETUPTOOLS_VERSION}"
 
 # Install Ansible
-ENV ANSIBLE_VERSION 2.2.0.0
+ENV ANSIBLE_VERSION 2.2.1.0
 RUN echo "===> Adding ansible ${ANSIBLE_VERSION}" && \
     pip install ansible==${ANSIBLE_VERSION}
 
@@ -50,7 +50,7 @@ RUN echo "===> Adding jMeter ${JMETER_VERSION}" && \
     ln -s /opt/apache-jmeter-${JMETER_VERSION}/bin/jmeter /usr/local/bin/
 
 # Add terraform
-ENV TERRAFORM_VERSION 0.7.7
+ENV TERRAFORM_VERSION 0.8.5
 RUN echo "===> Adding terraform ${TERRAFORM_VERSION}" && \
     wget -P /tmp "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
     unzip /tmp/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/

@@ -80,6 +80,12 @@ COPY Gemfile /gems/
 COPY Gemfile.lock /gems/
 RUN cd /gems && bundle install
 
+# Add Sonar Scanner
+ENV PATH /usr/local/bin/sonar-scanner-2.9.0.670:$PATH
+RUN echo "===> Adding Sonar Scanner" && \
+    wget -P /tmp https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-2.9.0.670.zip && \
+    unzip /tmp/sonar-scanner-cli-2.9.0.670.zip -d /usr/local/bin
+
 # Clean up
 RUN echo "===> Cleaning up" && \
     rm -rf /tmp/* && \

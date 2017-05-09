@@ -14,8 +14,13 @@ RUN echo "===> Adding epel, java, ruby, pip, etc" && \
     yum install -y epel-release && \
     yum install -y wget bc openssl sudo unzip graphviz git perl jq \
       java-${JAVA_VERSION}-openjdk java-${JAVA_VERSION}-openjdk-devel \
-      maven libffi-devel which \
+      libffi-devel which \
       python-pip python-devel zlib-devel openssl-devel readline-devel
+
+# Install Maven
+RUN wget http://www-eu.apache.org/dist/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz
+RUN cd /opt/ && tar xzvf /apache-maven-3.5.0-bin.tar.gz
+ENV PATH /opt/apache-maven-3.5.0/bin:${PATH}
 
 # Install Ansible pre-reqs
 RUN echo "===> Adding ansible pre-reqs" && \
